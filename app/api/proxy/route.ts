@@ -14,10 +14,11 @@ export async function GET(req: NextRequest) {
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 500);
+    const timeoutId = setTimeout(() => controller.abort(), 200);
 
     const response = await fetch(targetUrl, {
-      signal: controller.signal,
+			signal: controller.signal,
+			mode: "no-cors",
     });
 
     clearTimeout(timeoutId);
